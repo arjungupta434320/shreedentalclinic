@@ -11,7 +11,7 @@ A complete, production-ready, ultra-modern luxury dental clinic website built wi
 * **White & Modern Mixel Luxury Palette:** Crisp alabaster white (`#FFFFFF`) and soft pearl (`#F8FAFC`) canvas accented with medical teal (`#0D9488`), sky blue (`#0284C7`), and champagne gold (`#D4AF37`) badges.
 * **Editorial Typography:** Editorial serif headings powered by **Playfair Display** & **Cormorant Garamond**, paired with the modern sans-serif **Plus Jakarta Sans** for UI legibility.
 * **Interactive Clinic Showcase:** Bento-grid masonry gallery featuring high-resolution operatory visuals with hover zooms and interactive full-screen lightboxes.
-* **Verified Patient Reviews Carousel:** Interactive touch-swipe testimonial slider showcasing verified Google review screenshots with lightbox zoom.
+* **Google Reviews Showcase (Infinite Marquee):** Pure text-based verified Google reviews extracted from authentic patient feedback with avatar initials, 5-star ratings, treatment tags, and continuous smooth luxury marquee animation with hover-pause (zero screenshot images in the reviews section).
 * **Signature Treatments Bento:** 6 specialization cards with instant *"Book Consultation"* triggers that pre-select the treatment in the reservation form.
 * **Concierge Booking Form:**
   * Real-time 10-digit mobile number validation (`:user-invalid` feedback).
@@ -37,11 +37,11 @@ A complete, production-ready, ultra-modern luxury dental clinic website built wi
 ├── shree dental care 2.webp             # Executive consultation cabin
 ├── shree dental care 3.webp             # Digital imaging & diagnostic bay
 ├── shree dental care 4.webp             # Implantology & microsurgical theater
-├── Screenshot 2026-11-10 011310.png     # Verified patient review 1
-├── Screenshot 2026-11-10 011330.png     # Verified patient review 2
-├── Screenshot 2026-11-10 011340.png     # Verified patient review 3
-├── Screenshot 2026-11-10 011350.png     # Verified patient review 4
-└── Screenshot 2026-11-10 011358.png     # Verified patient review 5
+├── Screenshot 2026-11-10 011310.png     # Asset
+├── Screenshot 2026-11-10 011330.png     # Asset
+├── Screenshot 2026-11-10 011340.png     # Asset
+├── Screenshot 2026-11-10 011350.png     # Asset
+└── Screenshot 2026-11-10 011358.png     # Asset
 ```
 
 ---
@@ -63,11 +63,35 @@ npx serve .
 
 ---
 
+## ⚡ Deployment to Cloudflare Pages (via Git)
+
+Because this is a modern static HTML5 + Tailwind CSS site, hosting on **Cloudflare Pages** is instantaneous, completely free, and gives you a worldwide CDN with automated SSL:
+
+1. **Log into Cloudflare:**
+   - Go to [dash.cloudflare.com](https://dash.cloudflare.com) and log in.
+2. **Go to Workers & Pages:**
+   - In the left sidebar, click **Compute (Workers & Pages)** > **Create application**.
+   - Select the **Pages** tab and click **Connect to Git**.
+3. **Connect Your GitHub Repository:**
+   - Link your GitHub account and select `arjungupta434320/shreedentalclinic`.
+4. **Configure Settings:**
+   - **Project Name:** `shreedentalclinic` (or any custom name)
+   - **Production Branch:** `main`
+   - **Framework Preset:** `None`
+   - **Build Command:** *(Leave blank)*
+   - **Build Output Directory:** `/` *(or leave blank)*
+5. **Deploy:**
+   - Click **Save and Deploy**.
+   - Your site will be live in under 20 seconds at a free `https://shreedentalclinic.pages.dev` URL with automatic deployments on every `git push`.
+
+---
+
 ## 📞 Clinic Details
 
 * **Clinic Name:** Shree Dental Care
 * **Primary Phone / WhatsApp:** [+91 81261 26513](tel:8126126513)
 * **WhatsApp Booking:** [Chat with Clinic](https://wa.me/918126126513)
+* **Address:** Galira Road, Gali Number 3, near Ravinder molu ki kothi, Wills Colony, Saharanpur, Uttar Pradesh 247001
 * **Hours:** Monday – Saturday: 9:30 AM – 8:30 PM | Sunday: 10:00 AM – 2:00 PM (Emergency)
 
 ---
