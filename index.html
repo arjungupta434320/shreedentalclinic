@@ -153,14 +153,63 @@
       background: linear-gradient(
         60deg,
         rgba(255, 255, 255, 0) 20%,
-        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0.3) 50%,
         rgba(255, 255, 255, 0) 80%
       );
-      transform: rotate(30deg) translateX(-100%);
+      transform: rotate(30deg) translateX(-120%);
       transition: transform 0.8s ease-in-out;
     }
     .shimmer-btn:hover::after {
-      transform: rotate(30deg) translateX(100%);
+      transform: rotate(30deg) translateX(120%);
+    }
+
+    /* Continuous Luxury Button Auto-Sheen */
+    @keyframes autoSheen {
+      0%, 75% { transform: rotate(30deg) translateX(-130%); }
+      85%, 100% { transform: rotate(30deg) translateX(130%); }
+    }
+    .auto-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+    .auto-sheen::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 65%
+      );
+      animation: autoSheen 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      pointer-events: none;
+    }
+
+    /* Luxury Fast Counter Display Typography */
+    .counter-number {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .counter-number.counting {
+      color: #0D9488;
+      text-shadow: 0 0 12px rgba(13, 148, 136, 0.25);
+    }
+
+    /* Tactile Interactive Pill Animations */
+    .treatment-pill, .time-pill {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .treatment-pill:active, .time-pill:active {
+      transform: scale(0.95);
+    }
+    .treatment-pill.active, .time-pill.active {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.25);
     }
 
     /* Continuous Marquee Animation */
@@ -321,7 +370,7 @@
           </a>
 
           <!-- Book Appointment Shimmer Button -->
-          <a href="#book" class="shimmer-btn inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2 text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 rounded-full shadow-md shadow-teal-600/25 hover:shadow-teal-600/40 active:scale-95 transition-all">
+          <a href="#book" class="shimmer-btn auto-sheen inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2 text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 rounded-full shadow-md shadow-teal-600/25 hover:shadow-teal-600/40 active:scale-95 transition-all">
             <span>Book Visit</span>
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
@@ -410,7 +459,7 @@
           <!-- Dual CTAs -->
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto pt-1">
             <!-- Schedule Visit Button -->
-            <a href="#book" class="shimmer-btn inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 text-white font-bold text-sm sm:text-base shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 hover:scale-[1.02] active:scale-95 transition-all text-center">
+            <a href="#book" class="shimmer-btn auto-sheen inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 text-white font-bold text-sm sm:text-base shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 hover:scale-[1.02] active:scale-95 transition-all text-center">
               <span>Schedule Your Visit</span>
               <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
@@ -424,21 +473,30 @@
 
           <!-- Quick Stats Row (Bento style - 2x2 on mobile, 4 in a row on sm+) -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 w-full pt-3 border-t border-slate-200/80">
-            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100">
-              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">15,000+</span>
-              <span class="text-[10px] sm:text-xs font-medium text-slate-500">Smiles Perfected</span>
+            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100 group">
+              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight flex items-baseline">
+                <span class="counter-number" data-target="15000" data-suffix="+" data-format="comma">0</span>
+              </span>
+              <span class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-teal-700 transition-colors">Smiles Perfected</span>
             </div>
-            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100">
-              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-teal-600 tracking-tight">100%</span>
-              <span class="text-[10px] sm:text-xs font-medium text-slate-500">Painless Protocol</span>
+            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100 group">
+              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-teal-600 tracking-tight flex items-baseline">
+                <span class="counter-number" data-target="100" data-suffix="%">0</span>
+              </span>
+              <span class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-teal-700 transition-colors">Painless Protocol</span>
             </div>
-            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100">
-              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">4.9 / 5</span>
-              <span class="text-[10px] sm:text-xs font-medium text-slate-500">Google Rating</span>
+            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100 group">
+              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight flex items-baseline gap-1">
+                <span class="counter-number text-brand-gold" data-target="4.9" data-decimals="1">0.0</span>
+                <span class="text-xs sm:text-sm text-slate-400 font-bold">/ 5</span>
+              </span>
+              <span class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-teal-700 transition-colors">Google Rating</span>
             </div>
-            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100">
-              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-sky-600 tracking-tight">Zero</span>
-              <span class="text-[10px] sm:text-xs font-medium text-slate-500">Waiting Time Promise</span>
+            <div class="flex flex-col p-2.5 sm:p-0 rounded-xl sm:rounded-none bg-slate-50/80 sm:bg-transparent border sm:border-0 border-slate-100 group">
+              <span class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-sky-600 tracking-tight flex items-baseline">
+                <span class="counter-number" data-target="15" data-suffix="+ Yrs">0</span>
+              </span>
+              <span class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-teal-700 transition-colors">Clinical Mastery</span>
             </div>
           </div>
 
@@ -967,7 +1025,7 @@
           <span class="tracking-wide">Google Verified Patient Reviews</span>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
           <span class="text-brand-gold font-extrabold flex items-center gap-0.5">
-            4.9 ★★★★★
+            <span class="counter-number" data-target="4.9" data-decimals="1">0.0</span> ★★★★★
           </span>
         </div>
 
@@ -978,18 +1036,22 @@
           Authentic feedback from real patients treated at Shree Dental Care. Rated 4.9 stars on Google for pain-free precision dentistry, spotless clinical hygiene, and genuine doctor care.
         </p>
 
-        <!-- Google Score Summary Banner -->
+        <!-- Google Score Summary Banner with Fast Counters -->
         <div class="mt-6 inline-flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-2.5 px-5 rounded-2xl bg-slate-50/90 border border-slate-200/80 shadow-xs text-center">
           <div class="flex items-center gap-2">
-            <span class="text-2xl font-extrabold text-slate-900 tracking-tight">4.9</span>
+            <span class="text-2xl font-extrabold text-slate-900 tracking-tight">
+              <span class="counter-number" data-target="4.9" data-decimals="1">0.0</span>
+            </span>
             <div class="flex text-brand-gold text-sm tracking-wide">★★★★★</div>
           </div>
           <span class="hidden sm:inline text-slate-300">|</span>
-          <span class="text-xs font-semibold text-slate-600">500+ Verified Patient Ratings</span>
+          <span class="text-xs font-semibold text-slate-600">
+            <span class="counter-number font-bold text-slate-900" data-target="500" data-suffix="+">0</span> Verified Patient Ratings
+          </span>
           <span class="hidden sm:inline text-slate-300">|</span>
           <span class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-            100% Recommended
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="counter-number" data-target="100" data-suffix="%">0</span> Recommended
           </span>
         </div>
       </div>
@@ -1522,7 +1584,7 @@
   <section id="why-us" class="py-14 sm:py-20 bg-slate-50/70 border-y border-slate-200/80 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
         <span class="inline-block text-xs uppercase tracking-widest font-extrabold text-teal-600 bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/60 mb-3">
           The Elevated Standard
         </span>
@@ -1532,6 +1594,47 @@
         <p class="mt-4 text-base text-slate-600">
           We reimagined every touchpoint of your dental visit to guarantee uncompromising hygiene, serene relaxation, and permanent clinical results.
         </p>
+      </div>
+
+      <!-- Clinical Milestones by the Numbers (Fast Count Bento Strip) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-12 sm:mb-16">
+        
+        <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all text-center group bg-white/95 relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal-500 to-sky-500 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+          <div class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <span class="counter-number" data-target="15000" data-suffix="+" data-format="comma">0</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5">Happy Smiles</p>
+          <span class="text-[10px] sm:text-xs text-slate-500">Restored across North India</span>
+        </div>
+
+        <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all text-center group bg-white/95 relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal-500 to-emerald-500 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+          <div class="text-2xl sm:text-4xl font-extrabold text-teal-600 tracking-tight">
+            <span class="counter-number" data-target="99.8" data-decimals="1" data-suffix="%">0.0</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5">Painless Comfort</p>
+          <span class="text-[10px] sm:text-xs text-slate-500">Verified patient satisfaction</span>
+        </div>
+
+        <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all text-center group bg-white/95 relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400 to-amber-600 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+          <div class="text-2xl sm:text-4xl font-extrabold text-amber-600 tracking-tight">
+            <span class="counter-number" data-target="15" data-suffix="+ Yrs">0</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5">Clinical Mastery</p>
+          <span class="text-[10px] sm:text-xs text-slate-500">Continuous specialized training</span>
+        </div>
+
+        <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-luxury-hover hover:-translate-y-1.5 transition-all text-center group bg-white/95 relative overflow-hidden">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-sky-500 to-teal-500 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+          <div class="text-2xl sm:text-4xl font-extrabold text-sky-600 tracking-tight">
+            <span class="counter-number" data-target="100" data-suffix="%">0</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-800 mt-1.5">Class-B Sterilization</p>
+          <span class="text-[10px] sm:text-xs text-slate-500">Hospital-grade autoclave</span>
+        </div>
+
       </div>
 
       <!-- Comparison Matrix Card -->
@@ -1874,7 +1977,7 @@
               <button 
                 type="submit" 
                 id="submitBookingBtn" 
-                class="shimmer-btn flex-1 py-3.5 sm:py-4 px-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 text-white font-bold text-xs sm:text-sm shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 active:scale-95 transition-all flex items-center justify-center gap-2 min-h-[48px]"
+                class="shimmer-btn auto-sheen flex-1 py-3.5 sm:py-4 px-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 text-white font-bold text-xs sm:text-sm shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 active:scale-95 transition-all flex items-center justify-center gap-2 min-h-[48px]"
               >
                 <span id="submitBtnText">Confirm Appointment Request</span>
                 <svg id="submitSpinner" class="w-5 h-5 hidden animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
@@ -2090,7 +2193,7 @@
       <!-- Book Online Button (50%) -->
       <a 
         href="#book" 
-        class="h-12 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 text-white font-bold text-xs tracking-wide shadow-md shadow-teal-600/30 active:scale-95 transition-transform"
+        class="auto-sheen h-12 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-teal-600 via-sky-600 to-teal-700 text-white font-bold text-xs tracking-wide shadow-md shadow-teal-600/30 active:scale-95 transition-transform"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         <span>Book Online</span>
@@ -2613,6 +2716,88 @@
         if (pressedOutside && isOutside(e, bookingSuccessModal)) bookingSuccessModal.close();
       });
     }
+
+    // ============================================================
+    // --- FAST NUMBER COUNTER ANIMATION ENGINE ---
+    // High-performance requestAnimationFrame with easeOutQuart
+    // ============================================================
+    function initFastCounters() {
+      const counters = document.querySelectorAll('.counter-number');
+      if (!counters.length) return;
+
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const runCounter = (el) => {
+        if (el.dataset.animated === 'true') return;
+        el.dataset.animated = 'true';
+
+        const target = parseFloat(el.getAttribute('data-target')) || 0;
+        const decimals = parseInt(el.getAttribute('data-decimals'), 10) || 0;
+        const prefix = el.getAttribute('data-prefix') || '';
+        const suffix = el.getAttribute('data-suffix') || '';
+        const isComma = el.getAttribute('data-format') === 'comma';
+        const duration = parseInt(el.getAttribute('data-duration'), 10) || 1400; // 1.4s fast count
+
+        const formatVal = (val) => {
+          let str = decimals > 0 ? val.toFixed(decimals) : Math.round(val);
+          if (isComma) {
+            str = Number(str).toLocaleString('en-US');
+          }
+          return `${prefix}${str}${suffix}`;
+        };
+
+        if (prefersReducedMotion) {
+          el.textContent = formatVal(target);
+          return;
+        }
+
+        const startTime = performance.now();
+        el.classList.add('counting');
+
+        const step = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Fast-start exponential easeOutQuart: rapid initial climb, smooth landing
+          const easeProgress = 1 - Math.pow(1 - progress, 4);
+          const currentVal = easeProgress * target;
+
+          el.textContent = formatVal(currentVal);
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = formatVal(target);
+            el.classList.remove('counting');
+          }
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      if ('IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              runCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+      } else {
+        counters.forEach(runCounter);
+      }
+    }
+
+    // Initialize fast counters on DOM ready and window load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFastCounters);
+    } else {
+      initFastCounters();
+    }
+    window.addEventListener('load', initFastCounters);
 
     // Navbar scroll blur shadow intensifier
     window.addEventListener('scroll', () => {
